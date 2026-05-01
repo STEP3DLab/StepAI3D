@@ -228,6 +228,7 @@
     .free{display:none;padding:16px;border-radius:18px;border:1px solid var(--line);background:var(--soft)}
     .free.show{display:block}
     .success{display:none;padding:14px 16px;border-radius:16px;background:#edf9f2;color:#087443;margin-bottom:14px;line-height:1.45}
+    .success.error{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
     .success.show{display:block}
     .form-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .form-note{color:var(--muted);font-size:14px;line-height:1.55}
@@ -257,6 +258,7 @@
     .copy.copied{color:#087443;border-color:#b7ead0}
     .footer{padding:28px 0 88px}
     .footer-box{border-top:1px solid var(--line);padding-top:20px;color:var(--muted);display:grid;gap:12px;font-size:14px}
+    .footer-event{font-size:14px;color:var(--muted);font-weight:600}
     .footer-title{color:var(--text);font-weight:760}
     .footer-links{display:flex;gap:10px;flex-wrap:wrap}
     .footer-link{border:0;background:transparent;min-height:0;padding:0;cursor:pointer;color:var(--text);font-weight:720;text-decoration:underline;text-underline-offset:3px}

@@ -18,6 +18,7 @@
   <meta name="twitter:title" content="Мастер-класс — ИИ в 3D">
   <meta name="twitter:description" content="Мастер-класс 23 мая в 14:00. ИИ в 3D-моделировании: от идеи до статуэтки.">
   <meta name="twitter:image" content="https://step3dlab.github.io/StepAI/media-contact-sheet.jpg">
+  <link rel="stylesheet" href="assets/styles/main.css">
 </head>
 <body>
   <header class="topbar">
@@ -44,7 +45,7 @@
   <main>
     <section class="hero" id="overview">
       <div class="container hero-inner">
-
+        <div class="kicker" data-text="hero_kicker"></div>
         <h1>Изучайте <span class="gradient">ИИ в 3D</span></h1>
         <p class="subtitle">Практический мастер-класс о том, как использовать ИИ для идеи, 3D-концепции, VR-проверки и подготовки объекта к печати.</p>
         <div class="actions">
@@ -407,7 +408,7 @@
         <div class="card form-card">
           <h2>Запись</h2>
           <p class="text">Заполните форму. После отправки заявка попадёт в pipeline, менеджер получит уведомление, а вы — автоответ.</p>
-          <div class="success" id="successBox" role="status">Заявка принята. Мы ответим в течение 2 часов в рабочее время.</div>
+          <div class="success" id="successBox" role="status" aria-live="polite">Заявка принята. Мы ответим в течение 2 часов в рабочее время.</div>
           <form id="signupForm">
             <input class="honeypot" type="text" id="company" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
             <input type="hidden" id="formStartedAt" name="formStartedAt" value="">
@@ -498,9 +499,7 @@
 
   <footer class="footer">
     <div class="container footer-box">
-
-      <div class="footer-links">
-        <a class="footer-link" href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Политика обработки ПДн</a>
+      <div class="footer-event" data-text="footer_event"></div>
         <a class="footer-link" href="terms.html" target="_blank" rel="noopener noreferrer">Оферта / Условия участия</a>
         <a class="footer-link" href="consent.html" target="_blank" rel="noopener noreferrer">Согласие на обработку</a>
       </div>
@@ -512,6 +511,6 @@
   <script type="importmap">
     {"imports":{"three":"./assets/vendor/three/three.module.min.js"}}
   </script>
-
+  <script type="module" src="assets/scripts/main.js"></script>
 </body>
 </html>

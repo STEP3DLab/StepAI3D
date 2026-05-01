@@ -34,11 +34,16 @@ function json(res, status, body) {
   res.end(JSON.stringify(body));
 }
 
+const LOGS_DIR = path.join(process.cwd(), 'logs');
+if (!fs.existsSync(LOGS_DIR)) {
+  try { fs.mkdirSync(LOGS_DIR, { recursive: true }); } catch (_) {}
+}
+
 function logRejected(reason, meta) {
   const entry = { ts: new Date().toISOString(), reason, ...meta };
   console.warn('[REJECTED_FORM]', JSON.stringify(entry));
   try {
-    fs.appendFileSync(path.join(process.cwd(), 'logs', 'rejected-submissions.log'), `${JSON.stringify(entry)}\n`, 'utf8');
+    fs.appendFileSync(path.join(LOGS_DIR, 'rejected-submissions.log'), `${JSON.stringify(entry)}\n`, 'utf8');
   } catch (_) {}
 }
 
@@ -57,6 +62,11 @@ async function handler(req, res) {
   req.on('data', chunk => {
     body += chunk;
     if (body.length > 100_000) req.destroy();
+  });
+
+  req.on('error', error => {
+    logRejected('request_error', { ip, ua, message: error?.message || 'unknown' });
+    return json(res, 400, { error: 'Request error' });
   });
 
   req.on('end', () => {

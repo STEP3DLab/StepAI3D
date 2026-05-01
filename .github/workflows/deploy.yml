@@ -14,13 +14,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build static artifact
         run: |
-          mkdir -p _site/assets
-          cp index.html robots.txt sitemap.xml media-contact-sheet.jpg _site/
+          mkdir -p _site/assets/content _site/assets/styles _site/assets/scripts
+          cp index.html robots.txt sitemap.xml media-contact-sheet.jpg consent.html privacy-policy.html terms.html _site/
           cp assets/VK.jpg assets/teacher-kristina.jpg _site/assets/
-          cp assets/gallery-scan.jpg assets/gallery-statues.jpg assets/gallery-chess.jpg _site/assets/
-          cp assets/gallery-workshop.jpg assets/gallery-large-print.jpg assets/gallery-model.jpg _site/assets/
+          cp assets/gallery-scan.jpg assets/gallery-statues.jpg assets/gallery-chess.jpg assets/gallery-workshop.jpg assets/gallery-large-print.jpg assets/gallery-model.jpg _site/assets/
           cp -r assets/Meshy_AI_11111_0501073610_texture_fbx _site/assets/
           cp -r assets/vendor _site/assets/
+          cp assets/content/site-config.json _site/assets/content/
+          cp -r assets/styles _site/assets/
+          cp -r assets/scripts _site/assets/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
