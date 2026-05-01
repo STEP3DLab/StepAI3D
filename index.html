@@ -250,6 +250,7 @@
     .free.show{display:block}
     .success{display:none;padding:14px 16px;border-radius:16px;background:#edf9f2;color:#087443;margin-bottom:14px;line-height:1.45}
     .success.show{display:block}
+    .honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
     .form-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .form-note{color:var(--muted);font-size:14px;line-height:1.55}
     .aside{padding:28px;background:var(--soft);border-radius:26px;border:1px solid var(--line)}
@@ -686,6 +687,8 @@
           <p class="text">Заполните форму. Сайт подготовит письмо на почту организатора.</p>
           <div class="success" id="successBox" role="status">Письмо с заявкой подготовлено. Подтвердите отправку в почтовом приложении или напишите в Telegram.</div>
           <form id="signupForm">
+            <input class="honeypot" type="text" id="company" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" id="formStartedAt" name="formStartedAt" value="">
             <label>Ваше имя<input id="name" required placeholder="Имя"></label>
             <label>Telegram или e-mail<input id="contact" required placeholder="@username или почта"></label>
             <label>Телефон, если удобнее звонком<input id="phone" inputmode="tel" placeholder="+7 ..."></label>
@@ -769,12 +772,25 @@
     radios.forEach(r=>r.addEventListener('change',updateChoices));updateChoices();
     document.querySelectorAll('[data-format]').forEach(link=>{link.addEventListener('click',()=>{const radio=document.querySelector('input[name=format][value="'+link.dataset.format+'"]');if(radio){radio.checked=true;updateChoices()}})});
 
-    document.getElementById('signupForm').addEventListener('submit',e=>{
+    const formStartedAtField=document.getElementById('formStartedAt');
+    formStartedAtField.value=String(Date.now());
+    document.getElementById('signupForm').addEventListener('submit',async e=>{
       e.preventDefault();
+      const minFillMs=4000,startedAt=Number(formStartedAtField.value||Date.now()),honeypot=document.getElementById('company').value.trim();
+      if(honeypot){return}
+      if(Date.now()-startedAt<minFillMs){alert('Форма отправлена слишком быстро. Подождите несколько секунд и повторите.');return}
       if(freeRadio.checked&&!reason.value.trim()){reason.focus();return}
       const name=document.getElementById('name').value.trim(),contact=document.getElementById('contact').value.trim(),phone=document.getElementById('phone').value.trim(),projectIdea=document.getElementById('projectIdea').value.trim(),comment=document.getElementById('comment').value.trim(),selected=document.querySelector('input[name=format]:checked').value,experience=document.querySelector('input[name=experience]:checked').value,formatText=selected==='vip'?'VIP — 5000 ₽':selected==='free'?'Бесплатно — без статуэтки':'Стандарт — 2500 ₽';
-      const body=['Заявка на мастер-класс','Источник: сайт мастер-класса','','Дата: 23 мая, 14:00','Формат: '+formatText,'Имя: '+name,'Контакт: '+contact,phone?'Телефон: '+phone:'','Опыт: '+experience,'Что хочет сделать или разобрать: '+projectIdea,freeRadio.checked?'Причина бесплатного участия: '+reason.value.trim():'',comment?'Комментарий: '+comment:'','Оплата: только после подтверждения места','Согласие на связь: да'].filter(Boolean).join('\n');
-      location.href='mailto:projects.step3d@gmail.com?subject='+encodeURIComponent('Заявка на мастер-класс')+'&body='+encodeURIComponent(body);
+      const payload={name,contact,phone,projectIdea,comment,format:selected,experience,freeReason:freeRadio.checked?reason.value.trim():'',honeypot,formStartedAt:startedAt,captchaToken:window.stepCaptchaToken||''};
+      try{
+        const res=await fetch('/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+        if(!res.ok)throw new Error('submit_failed');
+        document.getElementById('successBox').textContent='Спасибо! Заявка отправлена.';
+      }catch{
+        const body=['Заявка на мастер-класс','Источник: сайт мастер-класса','','Дата: 23 мая, 14:00','Формат: '+formatText,'Имя: '+name,'Контакт: '+contact,phone?'Телефон: '+phone:'','Опыт: '+experience,'Что хочет сделать или разобрать: '+projectIdea,freeRadio.checked?'Причина бесплатного участия: '+reason.value.trim():'',comment?'Комментарий: '+comment:'','Оплата: только после подтверждения места','Согласие на связь: да'].filter(Boolean).join('\n');
+        location.href='mailto:projects.step3d@gmail.com?subject='+encodeURIComponent('Заявка на мастер-класс')+'&body='+encodeURIComponent(body);
+        document.getElementById('successBox').textContent='Письмо с заявкой подготовлено. Подтвердите отправку в почтовом приложении или напишите в Telegram.';
+      }
       document.getElementById('successBox').classList.add('show');
     });
 
@@ -822,4 +838,3 @@
   </script>
 </body>
 </html>
-
