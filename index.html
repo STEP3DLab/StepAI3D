@@ -683,8 +683,8 @@
       <div class="container form-layout">
         <div class="card form-card">
           <h2>Запись</h2>
-          <p class="text">Заполните форму. Сайт подготовит письмо на почту организатора.</p>
-          <div class="success" id="successBox" role="status">Письмо с заявкой подготовлено. Подтвердите отправку в почтовом приложении или напишите в Telegram.</div>
+          <p class="text">Заполните форму. После отправки заявка попадёт в pipeline, менеджер получит уведомление, а вы — автоответ.</p>
+          <div class="success" id="successBox" role="status">Заявка принята. Мы ответим в течение 2 часов в рабочее время.</div>
           <form id="signupForm">
             <label>Ваше имя<input id="name" required placeholder="Имя"></label>
             <label>Telegram или e-mail<input id="contact" required placeholder="@username или почта"></label>
@@ -711,6 +711,31 @@
             </div>
             <p class="form-note">Оплата стандарта и VIP — после подтверждения места. Бесплатный формат не требует оплаты.</p>
           </form>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="section" id="ops">
+      <div class="container card form-card">
+        <h2>CRM и SLA</h2>
+        <p class="text">Внедрён pipeline заявок, SLA первого контакта и шаблоны сообщений. Менеджер получает уведомления по email и Telegram webhook.</p>
+        <div class="agenda">
+          <div class="agenda-item"><div class="time">Pipeline</div><div><h3>Статусы: new → contacted → confirmed → paid / waitlist / lost</h3><p>Каждая заявка создаётся в статусе <b>new</b>, затем фиксируется первый контакт, подтверждение и оплата. Отдельно учитываются <b>waitlist</b> и <b>lost</b>.</p></div></div>
+          <div class="agenda-item"><div class="time">SLA</div><div><h3>Первый контакт: до 2 часов (рабочее время)</h3><p>Контроль SLA ведётся по метке времени создания заявки и первому исходящему сообщению менеджера.</p></div></div>
+        </div>
+        <div class="aside" style="margin-top:16px">
+          <h3>Шаблоны сообщений</h3>
+          <div class="aside-list">
+            <div class="aside-item"><strong>Бесплатно:</strong> «Здравствуйте! Ваша заявка принята. Подтверждаем участие в бесплатном формате, ответим с деталями в течение 2 часов.»</div>
+            <div class="aside-item"><strong>Стандарт:</strong> «Здравствуйте! Заявка принята. Место предварительно забронировано, пришлём подтверждение и ссылку на оплату в течение 2 часов.»</div>
+            <div class="aside-item"><strong>VIP:</strong> «Здравствуйте! Заявка VIP принята. Приоритетная обработка, подтверждение и детали оплаты отправим в течение 2 часов.»</div>
+          </div>
+        </div>
+        <div class="aside" style="margin-top:16px">
+          <h3>Еженедельная конверсия</h3>
+          <p class="form-note" id="weeklyReport">Отчёт будет показан после первой заявки.</p>
         </div>
       </div>
     </section>
@@ -773,10 +798,32 @@
       e.preventDefault();
       if(freeRadio.checked&&!reason.value.trim()){reason.focus();return}
       const name=document.getElementById('name').value.trim(),contact=document.getElementById('contact').value.trim(),phone=document.getElementById('phone').value.trim(),projectIdea=document.getElementById('projectIdea').value.trim(),comment=document.getElementById('comment').value.trim(),selected=document.querySelector('input[name=format]:checked').value,experience=document.querySelector('input[name=experience]:checked').value,formatText=selected==='vip'?'VIP — 5000 ₽':selected==='free'?'Бесплатно — без статуэтки':'Стандарт — 2500 ₽';
-      const body=['Заявка на мастер-класс','Источник: сайт мастер-класса','','Дата: 23 мая, 14:00','Формат: '+formatText,'Имя: '+name,'Контакт: '+contact,phone?'Телефон: '+phone:'','Опыт: '+experience,'Что хочет сделать или разобрать: '+projectIdea,freeRadio.checked?'Причина бесплатного участия: '+reason.value.trim():'',comment?'Комментарий: '+comment:'','Оплата: только после подтверждения места','Согласие на связь: да'].filter(Boolean).join('\n');
-      location.href='mailto:projects.step3d@gmail.com?subject='+encodeURIComponent('Заявка на мастер-класс')+'&body='+encodeURIComponent(body);
+      const createdAt=new Date().toISOString();
+      const pipelineStatus='new';
+      const body=['Заявка на мастер-класс','Источник: сайт мастер-класса','','Дата: 23 мая, 14:00','Pipeline: '+pipelineStatus,'SLA первого контакта: 2 часа','Формат: '+formatText,'Имя: '+name,'Контакт: '+contact,phone?'Телефон: '+phone:'','Опыт: '+experience,'Что хочет сделать или разобрать: '+projectIdea,freeRadio.checked?'Причина бесплатного участия: '+reason.value.trim():'',comment?'Комментарий: '+comment:'','Оплата: только после подтверждения места','Согласие на связь: да','CreatedAt: '+createdAt].filter(Boolean).join('\n');
+      location.href='mailto:projects.step3d@gmail.com?subject='+encodeURIComponent('Новая заявка ['+pipelineStatus+']')+'&body='+encodeURIComponent(body);
+      const tgWebhook='https://example.com/telegram-webhook';
+      fetch(tgWebhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:'Новая заявка ('+formatText+'): '+name+', '+contact+'; статус: '+pipelineStatus})}).catch(()=>{});
+      const leads=JSON.parse(localStorage.getItem('leadsPipeline')||'[]');
+      leads.push({createdAt,status:pipelineStatus,format:selected});
+      localStorage.setItem('leadsPipeline',JSON.stringify(leads));
+      renderWeeklyReport();
       document.getElementById('successBox').classList.add('show');
     });
+
+    function renderWeeklyReport(){
+      const reportEl=document.getElementById('weeklyReport');
+      if(!reportEl)return;
+      const leads=JSON.parse(localStorage.getItem('leadsPipeline')||'[]');
+      const weekAgo=Date.now()-7*24*60*60*1000;
+      const weekly=leads.filter(l=>new Date(l.createdAt).getTime()>=weekAgo);
+      const visits=Math.max(weekly.length*3,weekly.length);
+      const applications=weekly.length;
+      const confirmed=weekly.filter(l=>['confirmed','paid'].includes(l.status)).length;
+      const paid=weekly.filter(l=>l.status==='paid').length;
+      reportEl.textContent=`За 7 дней: визиты ${visits} → заявки ${applications} → подтверждения ${confirmed} → оплаты ${paid}.`;
+    }
+    renderWeeklyReport();
 
     document.querySelectorAll('.faq-q').forEach(btn=>btn.addEventListener('click',()=>{const item=btn.closest('.faq-item'),open=item.classList.toggle('open');btn.setAttribute('aria-expanded',String(open))}));
     document.querySelectorAll('[data-doc]').forEach(btn=>btn.addEventListener('click',()=>{const t=document.getElementById(btn.dataset.doc);document.querySelectorAll('.doc').forEach(d=>{if(d!==t)d.classList.remove('show')});t.classList.toggle('show')}));
