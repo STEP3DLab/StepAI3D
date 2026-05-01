@@ -56,4 +56,7 @@ document.querySelectorAll('.faq-q').forEach(btn=>btn.addEventListener('click',()
 document.querySelectorAll('[data-doc]').forEach(btn=>btn.addEventListener('click',()=>{const t=document.getElementById(btn.dataset.doc);document.querySelectorAll('.doc').forEach(d=>{if(d!==t)d.classList.remove('show')});t.classList.toggle('show')}));
 document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(btn.dataset.copy);const old=btn.textContent;btn.textContent='Скопировано';btn.classList.add('copied');setTimeout(()=>{btn.textContent=old;btn.classList.remove('copied')},1500)}catch{alert(btn.dataset.copy)}}));
 document.getElementById('essayMore')?.addEventListener('click',e=>{const full=document.getElementById('essayFull'),open=full.classList.toggle('show');e.currentTarget.textContent=open?'Свернуть':'Подробнее...';e.currentTarget.setAttribute('aria-expanded',String(open))});
-applyContent();initViewer();
+
+function initPrinterUI(){const percentText=document.getElementById('percentText');const layerText=document.getElementById('layerText');const progressBar=document.getElementById('progressBar');if(!percentText||!layerText||!progressBar)return;const duration=5600,totalLayers=80,maxBarWidth=120;function tick(time){const t=time%duration,progress=t/duration,percent=Math.max(1,Math.round(progress*100)),layer=Math.max(1,Math.round(progress*totalLayers)),barWidth=Math.max(10,progress*maxBarWidth);percentText.textContent=`${percent}%`;layerText.textContent=`СЛОЙ ${layer} / ${totalLayers}`;progressBar.setAttribute('width',barWidth.toFixed(1));requestAnimationFrame(tick)}requestAnimationFrame(tick)}
+
+applyContent();initViewer();initPrinterUI();
