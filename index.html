@@ -18,7 +18,6 @@
   <meta name="twitter:title" content="Мастер-класс — ИИ в 3D">
   <meta name="twitter:description" content="Мастер-класс 23 мая в 14:00. ИИ в 3D-моделировании: от идеи до статуэтки.">
   <meta name="twitter:image" content="https://step3dlab.github.io/StepAI/media-contact-sheet.jpg">
-    <link rel="stylesheet" href="assets/styles/main.css?v=20260501">
 
 </head>
 <body>
@@ -46,7 +45,7 @@
   <main>
     <section class="hero" id="overview">
       <div class="container hero-inner">
-        <div class="kicker" data-text="hero_kicker">23 мая · 14:00 · Москва</div>
+
         <h1>Изучайте <span class="gradient">ИИ в 3D</span></h1>
         <p class="subtitle">Практический мастер-класс о том, как использовать ИИ для идеи, 3D-концепции, VR-проверки и подготовки объекта к печати.</p>
         <div class="actions">
@@ -54,10 +53,7 @@
           <a href="#pricing" class="btn">Форматы</a>
         </div>
         <div class="facts" aria-label="Ключевая информация">
-          <div class="fact"><span>Дата</span><strong data-text="date_short">23 мая</strong></div>
-          <div class="fact"><span>Начало</span><strong data-text="start_time">14:00</strong></div>
-          <div class="fact"><span>Участие</span><strong data-text="from_price">от 0 ₽</strong></div>
-          <div class="fact"><span>Места</span><strong data-text="places">7 из 12</strong></div>
+
         </div>
         <div class="trust">
           <span>Без сложной теории</span>
@@ -359,7 +355,7 @@
           <h2>Программа</h2>
           <p class="text">Коротко, по делу, с практикой.</p>
           <div class="agenda">
-            <div class="agenda-item"><div class="time">14:00</div><div><h3>ИИ в 3D</h3><p>Где ИИ реально помогает и какие задачи лучше оставлять человеку.</p></div></div>
+            <div class="agenda-item"><div class="time" data-event="timeText"></div><div><h3>ИИ в 3D</h3><p>Где ИИ реально помогает и какие задачи лучше оставлять человеку.</p></div></div>
             <div class="agenda-item"><div class="time">14:30</div><div><h3>Промпт и форма</h3><p>От текста и референсов к 3D-идее.</p></div></div>
             <div class="agenda-item"><div class="time">15:10</div><div><h3>VR и печать</h3><p>Форма, объём, масштаб и подготовка модели.</p></div></div>
             <div class="agenda-item"><div class="time">15:40</div><div><h3>Разбор</h3><p>Вопросы, практические кейсы и следующие шаги.</p></div></div>
@@ -402,7 +398,7 @@
     <section class="section center place" id="place">
       <div class="container">
         <h2>Где пройдёт</h2>
-        <p class="text">Москва, ул. Беговая, 12. Метро Беговая. Начало в 14:00.</p>
+        <p class="text">Москва, ул. Беговая, 12. Метро Беговая. Начало в <span data-event="timeText"></span>.</p>
         <a class="btn" target="_blank" rel="noopener noreferrer" href="https://yandex.ru/maps/?rtext=~55.778282,37.565506&rtt=auto">Построить маршрут</a>
       </div>
     </section>
@@ -411,8 +407,8 @@
       <div class="container form-layout">
         <div class="card form-card">
           <h2>Запись</h2>
-          <p class="text">Заполните форму. Сайт подготовит письмо на почту организатора.</p>
-          <div class="success" id="successBox" role="status">Письмо с заявкой подготовлено. Подтвердите отправку в почтовом приложении или напишите в Telegram.</div>
+          <p class="text">Заполните форму. После отправки заявка попадёт в pipeline, менеджер получит уведомление, а вы — автоответ.</p>
+          <div class="success" id="successBox" role="status">Заявка принята. Мы ответим в течение 2 часов в рабочее время.</div>
           <form id="signupForm">
             <label>Ваше имя<input id="name" required placeholder="Имя"></label>
             <label>Telegram или e-mail<input id="contact" required placeholder="@username или почта"></label>
@@ -433,12 +429,41 @@
             </div>
             <label>Что хотите сделать или разобрать<textarea id="projectIdea" required placeholder="Идея для статуэтки, проекта, подарка или вопрос"></textarea></label>
             <label>Комментарий к участию<textarea id="comment" placeholder="Например: удобный способ связи, пожелания по формату, вопросы по оплате"></textarea></label>
+            <label class="consent">
+              <input id="consent" type="checkbox" required>
+              <span class="consent-text">Я даю согласие на обработку персональных данных и подтверждаю, что ознакомлен(а) с <a href="consent.html" target="_blank" rel="noopener noreferrer">согласием</a>, <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">политикой обработки ПДн</a> и <a href="terms.html" target="_blank" rel="noopener noreferrer">условиями участия</a>.</span>
+            </label>
             <div class="form-actions">
               <button class="btn primary" type="submit">Отправить заявку</button>
               <a class="btn" href="https://t.me/step_3d_mngr" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
             </div>
             <p class="form-note">Оплата стандарта и VIP — после подтверждения места. Бесплатный формат не требует оплаты.</p>
           </form>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="section" id="ops">
+      <div class="container card form-card">
+        <h2>CRM и SLA</h2>
+        <p class="text">Внедрён pipeline заявок, SLA первого контакта и шаблоны сообщений. Менеджер получает уведомления по email и Telegram webhook.</p>
+        <div class="agenda">
+          <div class="agenda-item"><div class="time">Pipeline</div><div><h3>Статусы: new → contacted → confirmed → paid / waitlist / lost</h3><p>Каждая заявка создаётся в статусе <b>new</b>, затем фиксируется первый контакт, подтверждение и оплата. Отдельно учитываются <b>waitlist</b> и <b>lost</b>.</p></div></div>
+          <div class="agenda-item"><div class="time">SLA</div><div><h3>Первый контакт: до 2 часов (рабочее время)</h3><p>Контроль SLA ведётся по метке времени создания заявки и первому исходящему сообщению менеджера.</p></div></div>
+        </div>
+        <div class="aside" style="margin-top:16px">
+          <h3>Шаблоны сообщений</h3>
+          <div class="aside-list">
+            <div class="aside-item"><strong>Бесплатно:</strong> «Здравствуйте! Ваша заявка принята. Подтверждаем участие в бесплатном формате, ответим с деталями в течение 2 часов.»</div>
+            <div class="aside-item"><strong>Стандарт:</strong> «Здравствуйте! Заявка принята. Место предварительно забронировано, пришлём подтверждение и ссылку на оплату в течение 2 часов.»</div>
+            <div class="aside-item"><strong>VIP:</strong> «Здравствуйте! Заявка VIP принята. Приоритетная обработка, подтверждение и детали оплаты отправим в течение 2 часов.»</div>
+          </div>
+        </div>
+        <div class="aside" style="margin-top:16px">
+          <h3>Еженедельная конверсия</h3>
+          <p class="form-note" id="weeklyReport">Отчёт будет показан после первой заявки.</p>
         </div>
       </div>
     </section>
@@ -472,13 +497,12 @@
 
   <footer class="footer">
     <div class="container footer-box">
-      <div class="footer-title" data-text="footer_event">Мастер-класс · 23 мая · 14:00</div>
+
       <div class="footer-links">
-        <button class="footer-link" type="button" data-doc="offer">Оферта</button>
-        <button class="footer-link" type="button" data-doc="policy">Политика данных</button>
+        <a class="footer-link" href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Политика обработки ПДн</a>
+        <a class="footer-link" href="terms.html" target="_blank" rel="noopener noreferrer">Оферта / Условия участия</a>
+        <a class="footer-link" href="consent.html" target="_blank" rel="noopener noreferrer">Согласие на обработку</a>
       </div>
-      <div class="doc" id="offer">Заявка подаётся на выбранный формат. После заявки мы связываемся для подтверждения места и деталей участия.</div>
-      <div class="doc" id="policy">Данные используются только для связи по заявке. Отправляя форму, вы соглашаетесь на обработку данных для регистрации и связи.</div>
     </div>
   </footer>
 
@@ -487,8 +511,6 @@
   <script type="importmap">
     {"imports":{"three":"./assets/vendor/three/three.module.min.js"}}
   </script>
-    <script type="module" src="assets/scripts/main.js?v=20260501"></script>
 
 </body>
 </html>
-
