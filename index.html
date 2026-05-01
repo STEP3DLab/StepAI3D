@@ -20,15 +20,17 @@
   <link rel="stylesheet" href="assets/styles/main.css">
 </head>
 <body>
+<a class="skip-link" href="#mainContent">Перейти к содержимому</a>
 <header class="topbar">
   <div class="container topbar-inner">
     <a href="#" class="brand" aria-label="StepAI3D"><span class="mark" aria-hidden="true">▣</span><span>StepAI3D</span></a>
-    <nav class="nav" aria-label="Главная навигация">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Открыть меню">☰</button>
+    <nav class="nav" id="mainNav" aria-label="Главная навигация">
       <a href="#about">О мастер-классе</a><a href="#program">Программа</a><a href="#pricing">Форматы</a><a href="#form" class="cta">Записаться</a>
     </nav>
   </div>
 </header>
-<main>
+<main id="mainContent">
   <section class="hero" id="about">
     <div class="container hero-inner">
       <div class="kicker">Очный мастер-класс в Москве</div>
@@ -93,6 +95,7 @@
 
   <section class="section" id="contacts"><div class="container card contacts-card"><h2>Контакты</h2><div class="contacts"><div class="contact"><strong>Telegram</strong><a href="https://t.me/step_3d_mngr">@step_3d_mngr</a><button class="mini copy-btn" data-copy="@step_3d_mngr">Скопировать</button></div><div class="contact"><strong>E-mail</strong><a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a><button class="mini copy-btn" data-copy="projects.step3d@gmail.com">Скопировать</button></div></div></div></section>
 </main>
+<button class="back-to-top" type="button" aria-label="Наверх">↑</button>
 <footer class="footer"><div class="container footer-box"><a class="footer-link" href="terms.html" target="_blank" rel="noopener noreferrer">Оферта / Условия участия</a><a class="footer-link" href="consent.html" target="_blank" rel="noopener noreferrer">Согласие на обработку персональных данных</a><a class="footer-link" href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Политика обработки персональных данных</a></div></footer>
 <script type="module" src="assets/scripts/main.js"></script>
 </body></html>
