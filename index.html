@@ -288,8 +288,10 @@
     .footer-title{color:var(--text);font-weight:760}
     .footer-links{display:flex;gap:10px;flex-wrap:wrap}
     .footer-link{border:0;background:transparent;min-height:0;padding:0;cursor:pointer;color:var(--text);font-weight:720;text-decoration:underline;text-underline-offset:3px}
-    .doc{max-height:0;overflow:hidden;transition:.25s ease;line-height:1.55}
-    .doc.show{max-height:140px}
+    .consent{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--soft)}
+    .consent input{width:18px;height:18px;margin-top:2px;accent-color:var(--black)}
+    .consent-text{color:var(--muted);font-size:14px;line-height:1.5}
+    .consent-text a{color:var(--text);text-decoration:underline;text-underline-offset:3px;font-weight:650}
     .floating{position:fixed;z-index:70;right:18px;bottom:18px;min-height:56px;padding:0 24px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:var(--black);color:#fff;font-weight:780;box-shadow:0 20px 50px rgba(0,0,0,.20);transition:.25s ease}
     .floating.hide{opacity:0;pointer-events:none;transform:translateY(12px)}
 
@@ -712,6 +714,10 @@
             </div>
             <label>Что хотите сделать или разобрать<textarea id="projectIdea" required placeholder="Идея для статуэтки, проекта, подарка или вопрос"></textarea></label>
             <label>Комментарий к участию<textarea id="comment" placeholder="Например: удобный способ связи, пожелания по формату, вопросы по оплате"></textarea></label>
+            <label class="consent">
+              <input id="consent" type="checkbox" required>
+              <span class="consent-text">Я даю согласие на обработку персональных данных и подтверждаю, что ознакомлен(а) с <a href="consent.html" target="_blank" rel="noopener noreferrer">согласием</a>, <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">политикой обработки ПДн</a> и <a href="terms.html" target="_blank" rel="noopener noreferrer">условиями участия</a>.</span>
+            </label>
             <div class="form-actions">
               <button class="btn primary" type="submit">Отправить заявку</button>
               <a class="btn" href="https://t.me/step_3d_mngr" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
@@ -778,11 +784,10 @@
     <div class="container footer-box">
       <div class="footer-title">Мастер-класс · <span data-event="footerDate"></span> · <span data-event="footerTime"></span></div>
       <div class="footer-links">
-        <button class="footer-link" type="button" data-doc="offer">Оферта</button>
-        <button class="footer-link" type="button" data-doc="policy">Политика данных</button>
+        <a class="footer-link" href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Политика обработки ПДн</a>
+        <a class="footer-link" href="terms.html" target="_blank" rel="noopener noreferrer">Оферта / Условия участия</a>
+        <a class="footer-link" href="consent.html" target="_blank" rel="noopener noreferrer">Согласие на обработку</a>
       </div>
-      <div class="doc" id="offer">Заявка подаётся на выбранный формат. После заявки мы связываемся для подтверждения места и деталей участия.</div>
-      <div class="doc" id="policy">Данные используются только для связи по заявке. Отправляя форму, вы соглашаетесь на обработку данных для регистрации и связи.</div>
     </div>
   </footer>
 
@@ -858,9 +863,6 @@
 
     document.getElementById('signupForm').addEventListener('submit',e=>{
       e.preventDefault();
-      sendAnalyticsEvent('form_submit_attempt',{sourceSection:'form'});
-      if(freeRadio.checked&&!reason.value.trim()){reason.focus();sendAnalyticsEvent('form_submit_error',{sourceSection:'form'});return}
-      const name=document.getElementById('name').value.trim(),contact=document.getElementById('contact').value.trim(),phone=document.getElementById('phone').value.trim(),projectIdea=document.getElementById('projectIdea').value.trim(),comment=document.getElementById('comment').value.trim(),selected=document.querySelector('input[name=format]:checked').value,experience=document.querySelector('input[name=experience]:checked').value,formatText=selected==='vip'?'VIP — 5000 ₽':selected==='free'?'Бесплатно — без статуэтки':'Стандарт — 2500 ₽';
       document.getElementById('successBox').classList.add('show');
     });
 
@@ -879,8 +881,6 @@
     renderWeeklyReport();
 
     document.querySelectorAll('.faq-q').forEach(btn=>btn.addEventListener('click',()=>{const item=btn.closest('.faq-item'),open=item.classList.toggle('open');btn.setAttribute('aria-expanded',String(open))}));
-    document.querySelectorAll('[data-doc]').forEach(btn=>btn.addEventListener('click',()=>{const t=document.getElementById(btn.dataset.doc);document.querySelectorAll('.doc').forEach(d=>{if(d!==t)d.classList.remove('show')});t.classList.toggle('show')}));
-    document.querySelectorAll('[data-copy]').forEach(btn=>btn.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(btn.dataset.copy);sendOnceForElement(btn,'copy_contact_click','copy_contact_click',{sourceSection:'contacts'});const old=btn.textContent;btn.textContent='Скопировано';btn.classList.add('copied');setTimeout(()=>{btn.textContent=old;btn.classList.remove('copied')},1500)}catch(e){alert(btn.dataset.copy)}}));
     document.getElementById('essayMore')?.addEventListener('click',e=>{const full=document.getElementById('essayFull'),open=full.classList.toggle('show');e.currentTarget.textContent=open?'Свернуть':'Подробнее...';e.currentTarget.setAttribute('aria-expanded',String(open))});
 
     const viewer=document.getElementById('statueViewer');
