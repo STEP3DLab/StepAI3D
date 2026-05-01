@@ -1,0 +1,35 @@
+name: deploy
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build static artifact
+        run: |
+          mkdir -p _site/assets
+          cp index.html robots.txt sitemap.xml media-contact-sheet.jpg _site/
+          cp assets/VK.jpg assets/teacher-kristina.jpg _site/assets/
+          cp assets/gallery-scan.jpg assets/gallery-statues.jpg assets/gallery-chess.jpg _site/assets/
+          cp assets/gallery-workshop.jpg assets/gallery-large-print.jpg assets/gallery-model.jpg _site/assets/
+          cp -r assets/Meshy_AI_11111_0501073610_texture_fbx _site/assets/
+          cp -r assets/vendor _site/assets/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{steps.deploy.outputs.page_url}}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

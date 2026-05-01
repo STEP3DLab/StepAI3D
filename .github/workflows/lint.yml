@@ -1,0 +1,23 @@
+name: lint
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: HTML validator
+        run: npx --yes html-validate index.html
+      - name: Link checker
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --no-progress --accept 200,301,302 index.html robots.txt sitemap.xml
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: lychee/out.md
+          if-no-files-found: ignore
