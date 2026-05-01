@@ -65,6 +65,76 @@ function getUtmParams() {
   };
 }
 
+function normalizePhone(rawPhone) {
+  const digits = rawPhone.replace(/[\s()\-]/g, '').replace(/[^\d+]/g, '');
+
+  if (!digits) {
+    return '';
+  }
+
+  if (digits.startsWith('+7')) {
+    return `+7${digits.slice(2).replace(/\D/g, '')}`;
+  }
+
+  if (digits.startsWith('8')) {
+    return `+7${digits.slice(1).replace(/\D/g, '')}`;
+  }
+
+  return digits;
+}
+
+function parseAndValidateContacts({ phone, contact }) {
+  const normalizedPhone = normalizePhone(phone);
+  const expectedPhoneLength = 12; // +7 и 10 цифр номера.
+  const minPhoneLength = 11;
+  const telegramPattern = /^@[a-zA-Z0-9_]{5,32}$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  let telegram = '';
+  let email = '';
+
+  if (contact) {
+    if (contact.startsWith('@')) {
+      if (!telegramPattern.test(contact)) {
+        return {
+          isValid: false,
+          error: 'Telegram укажите в формате @username (латиница, цифры, _, 5–32 символа).'
+        };
+      }
+      telegram = contact;
+    } else {
+      if (!emailPattern.test(contact)) {
+        return {
+          isValid: false,
+          error: 'Email укажите в формате name@example.com или используйте Telegram в формате @username.'
+        };
+      }
+      email = contact;
+    }
+  }
+
+  if (normalizedPhone && normalizedPhone.length < minPhoneLength) {
+    return {
+      isValid: false,
+      error: 'Телефон слишком короткий. Укажите номер в формате +79991234567 или 89991234567.'
+    };
+  }
+
+  if (normalizedPhone && normalizedPhone.length !== expectedPhoneLength) {
+    return {
+      isValid: false,
+      error: 'Телефон укажите в формате +79991234567 или 89991234567.'
+    };
+  }
+
+  return {
+    isValid: true,
+    phone: normalizedPhone,
+    telegram,
+    email
+  };
+}
+
 signupForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -79,16 +149,19 @@ signupForm?.addEventListener('submit', async (event) => {
   const consent = Boolean(document.getElementById('consent')?.checked);
   const formatNode = document.querySelector('input[name="format"]:checked');
   const participationFormat = formatNode?.value || 'standard';
-  const telegram = contact.startsWith('@') ? contact : '';
-  const email = contact.includes('@') && !contact.startsWith('@') ? contact : '';
+  const contacts = parseAndValidateContacts({ phone, contact });
 
-  // Валидация MVP: обязательно имя, контакт (телефон или Telegram) и согласие.
+  // Валидация MVP: обязательно имя, контакт (телефон, Telegram или email) и согласие.
   if (!name) {
     setFormMessage('Укажите, пожалуйста, ваше имя.');
     return;
   }
-  if (!phone && !telegram) {
-    setFormMessage('Укажите телефон или Telegram для связи.');
+  if (!contacts.isValid) {
+    setFormMessage(contacts.error);
+    return;
+  }
+  if (!contacts.phone && !contacts.telegram && !contacts.email) {
+    setFormMessage('Укажите телефон в формате +79991234567 (или 89991234567), Telegram @username или email name@example.com.');
     return;
   }
   if (!consent) {
@@ -98,9 +171,9 @@ signupForm?.addEventListener('submit', async (event) => {
 
   const payload = {
     name,
-    phone,
-    telegram,
-    email,
+    phone: contacts.phone,
+    telegram: contacts.telegram,
+    email: contacts.email,
     participationFormat,
     needFigure: participationFormat !== 'free',
     tariff: participationFormat,
