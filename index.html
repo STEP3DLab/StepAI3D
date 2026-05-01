@@ -1,318 +1,99 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Мастер-класс — ИИ в 3D</title>
-  <meta name="description" content="Мастер-класс 23 мая в 14:00. ИИ в 3D-моделировании: от идеи до статуэтки.">
+  <title>StepAI3D — мастер-класс по ИИ, 3D-моделированию и 3D-печати</title>
+  <meta name="description" content="Очный мастер-класс StepAI3D: от идеи и ИИ-эскиза до 3D-модели и печати. Для школьников, студентов, родителей, преподавателей и начинающих специалистов.">
   <meta name="theme-color" content="#ffffff">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='white'/%3E%3Cpath d='M9 17h14v7H9zM12 11h3v3h2v-3h3v3h2v3H10v-3h2zM7 21h2v5H7zM23 21h2v5h-2z' fill='%2342d99e'/%3E%3C/svg%3E">
   <link rel="canonical" href="https://step3dlab.github.io/StepAI/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Мастер-класс — ИИ в 3D">
-  <meta property="og:description" content="Мастер-класс 23 мая в 14:00. ИИ в 3D-моделировании: от идеи до статуэтки.">
+  <meta property="og:title" content="StepAI3D — мастер-класс по ИИ и 3D-печати">
+  <meta property="og:description" content="Показываем полный путь: идея → ИИ-образ → 3D-модель → подготовка → печать → готовый объект.">
   <meta property="og:url" content="https://step3dlab.github.io/StepAI/">
   <meta property="og:image" content="https://step3dlab.github.io/StepAI/media-contact-sheet.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Мастер-класс — ИИ в 3D">
-  <meta name="twitter:description" content="Мастер-класс 23 мая в 14:00. ИИ в 3D-моделировании: от идеи до статуэтки.">
+  <meta name="twitter:title" content="StepAI3D — мастер-класс по ИИ и 3D-печати">
+  <meta name="twitter:description" content="Очный мастер-класс: от идеи до готовой фигурки или прототипа.">
   <meta name="twitter:image" content="https://step3dlab.github.io/StepAI/media-contact-sheet.jpg">
   <link rel="stylesheet" href="assets/styles/main.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a href="#" class="brand" aria-label="Мастер-класс">
-        <span class="mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none">
-            <path d="M18 18h8v-6h12v6h8v8h6v8h-6v8h-6v10h-8v-8H32v8h-8V42h-6v-8h-6v-8h6z" fill="currentColor"/>
-            <circle cx="24" cy="30" r="3" fill="white"/>
-            <circle cx="40" cy="30" r="3" fill="white"/>
-          </svg>
-        </span>
-        <span>Мастер-класс</span>
-      </a>
-      <nav class="nav" aria-label="Главная навигация">
-        <a href="#overview">Обзор</a>
-        <a href="#pricing">Форматы</a>
-        <a href="#contacts">Контакты</a>
-        <a href="#form" class="cta">Записаться</a>
-      </nav>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a href="#" class="brand" aria-label="StepAI3D"><span class="mark" aria-hidden="true">▣</span><span>StepAI3D</span></a>
+    <nav class="nav" aria-label="Главная навигация">
+      <a href="#about">О мастер-классе</a><a href="#flow">Как проходит</a><a href="#pricing">Стоимость</a><a href="#form" class="cta">Оставить заявку</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <section class="hero" id="about">
+    <div class="container hero-inner">
+      <div class="kicker">Очный образовательный формат</div>
+      <h1>StepAI3D</h1>
+      <p class="subtitle">Мастер-класс по ИИ, 3D-моделированию и 3D-печати: понятный путь от идеи до готовой фигурки или прототипа.</p>
+      <div class="actions"><a href="#form" class="btn primary">Записаться</a></div>
+      <div class="facts"><div class="fact"><span>Дата</span><strong>23 мая</strong></div><div class="fact"><span>Начало</span><strong>14:00</strong></div><div class="fact"><span>Формат</span><strong>Очно, Москва</strong></div><div class="fact"><span>Уровень</span><strong>Можно с нуля</strong></div></div>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero" id="overview">
-      <div class="container hero-inner">
-        <div class="kicker" data-text="hero_kicker"></div>
-        <h1>Изучайте <span class="gradient">ИИ в 3D</span></h1>
-        <p class="subtitle">Практический мастер-класс о том, как использовать ИИ для идеи, 3D-концепции, VR-проверки и подготовки объекта к печати.</p>
-        <div class="actions">
-          <a href="#form" class="btn primary">Записаться</a>
-          <a href="#pricing" class="btn">Форматы</a>
-        </div>
-        <div class="facts" aria-label="Ключевая информация">
+  <section class="section center"><div class="container"><h2>Что будет на мастер-классе</h2><p class="text">Вы увидите реальный рабочий процесс: как сформулировать идею, получить образ с помощью ИИ, перевести его в 3D-модель и подготовить к печати. По итогам у вас будет понятный алгоритм и практический результат.</p></div></section>
 
-        </div>
-        <div class="trust">
-          <span>Без сложной теории</span>
-          <span>Очный формат</span>
-          <span>Реальная лаборатория</span>
-        </div>
+  <section class="section" id="audience"><div class="container card program"><h2>Для кого</h2><div class="agenda">
+    <div class="agenda-item"><div class="time">1</div><div><h3>Школьники и студенты</h3><p>Для первого уверенного шага в современные технологии.</p></div></div>
+    <div class="agenda-item"><div class="time">2</div><div><h3>Родители и преподаватели</h3><p>Чтобы понять образовательную ценность ИИ и 3D на практике.</p></div></div>
+    <div class="agenda-item"><div class="time">3</div><div><h3>Начинающие специалисты</h3><p>Чтобы собрать базовый процесс для личных и учебных проектов.</p></div></div>
+    <div class="agenda-item"><div class="time">4</div><div><h3>Все, кому интересны ИИ и 3D</h3><p>Без сложной теории, с поддержкой преподавателей.</p></div></div>
+  </div></div></section>
+
+  <section class="section" id="flow"><div class="container card program"><h2>Как проходит</h2><div class="agenda">
+    <div class="agenda-item"><div class="time">01</div><div><h3>Идея</h3><p>Определяем задачу и конечный результат.</p></div></div>
+    <div class="agenda-item"><div class="time">02</div><div><h3>Генерация образа</h3><p>Создаём визуальные варианты с помощью ИИ.</p></div></div>
+    <div class="agenda-item"><div class="time">03</div><div><h3>3D-моделирование</h3><p>Переводим выбранный образ в трёхмерную форму.</p></div></div>
+    <div class="agenda-item"><div class="time">04</div><div><h3>Подготовка к печати</h3><p>Проверяем масштаб, толщины и технические параметры.</p></div></div>
+    <div class="agenda-item"><div class="time">05</div><div><h3>3D-печать</h3><p>Запускаем печать и контролируем процесс.</p></div></div>
+    <div class="agenda-item"><div class="time">06</div><div><h3>Готовый объект</h3><p>Получаем фигурку или прототип и обсуждаем улучшения.</p></div></div>
+  </div></div></section>
+
+  <section class="section" id="pricing"><div class="container card pricing"><h2>Стоимость и варианты участия</h2><p class="text">Стоимость объясняем открыто: вы заранее понимаете, что входит в каждый формат.</p><div class="price-grid">
+    <div class="price-card"><small>Без оплаты</small><h3>Бесплатное участие</h3><div class="price">0 ₽</div><p>Участие в мастер-классе без изготовления фигурки.</p><a class="mini" href="#form" data-format="free">Выбрать</a></div>
+    <div class="price-card featured"><small>Основной формат</small><h3>Участие с фигуркой</h3><div class="price">2500 ₽</div><p>Мастер-класс + изготовление фигурки по вашему проекту.</p><a class="mini primary" href="#form" data-format="standard">Выбрать</a></div>
+    <div class="price-card"><small>Расширенный формат</small><h3>VIP</h3><div class="price">5000 ₽</div><p>Если в вашем проекте уже предусмотрен VIP-вариант.</p><a class="mini" href="#form" data-format="vip">Выбрать</a></div>
+  </div><p class="form-note">Оплата для платных форматов — после подтверждения места.</p></div></section>
+
+  <section class="section"><div class="container card speaker"><div class="avatar"><img src="assets/VK.jpg" alt="Спикер мастер-класса"></div><div class="speaker-copy"><h2>Организатор и спикер</h2><p>Практик с опытом в 3D-печати, инженерном дизайне, обучении и проектной работе. На мастер-классе акцент на понятный процесс, аккуратный результат и реальные задачи участников.</p></div></div></section>
+
+  <section class="section center project-gallery"><div class="container"><h2>Примеры работ</h2></div><div class="projects-marquee"><div class="projects-track">
+    <article class="project-card"><div class="project-shot"><img src="assets/gallery-statues.jpg" alt="Примеры напечатанных фигурок"></div><div class="project-body"><strong>Фигурки</strong></div></article>
+    <article class="project-card"><div class="project-shot"><img src="assets/gallery-chess.jpg" alt="Печатные детали и игровой набор"></div><div class="project-body"><strong>Наборы объектов</strong></div></article>
+    <article class="project-card"><div class="project-shot"><img src="assets/gallery-workshop.jpg" alt="Работа участников в мастерской"></div><div class="project-body"><strong>Работа в лаборатории</strong></div></article>
+  </div></div></section>
+
+  <section class="section" id="form"><div class="container form-layout"><div class="card form-card"><h2>Форма заявки</h2><p class="text">Оставьте контакты, и мы свяжемся с вами для подтверждения участия.</p><div class="success show" id="successBox" role="status">Отправка формы будет подключена отдельным этапом. Сейчас форма доступна для заполнения и проверки структуры.</div>
+    <form id="signupForm">
+      <label>Ваше имя<input id="name" required placeholder="Имя"></label>
+      <label>Telegram или e-mail<input id="contact" required placeholder="@username или почта"></label>
+      <label>Телефон (по желанию)<input id="phone" inputmode="tel" placeholder="+7 ..."></label>
+      <div class="choices">
+        <label class="choice"><input type="radio" name="format" value="standard" checked><span><strong>Участие с фигуркой — 2500 ₽</strong></span></label>
+        <label class="choice"><input type="radio" name="format" value="vip"><span><strong>VIP — 5000 ₽</strong></span></label>
+        <label class="choice"><input type="radio" name="format" value="free" id="freeRadio"><span><strong>Бесплатное участие</strong></span></label>
       </div>
-    </section>
+      <label>Что хотите сделать или разобрать<textarea id="projectIdea" required placeholder="Коротко опишите идею"></textarea></label>
+      <label class="consent"><input id="consent" type="checkbox" required><span class="consent-text">Я даю согласие на обработку персональных данных.</span></label>
+      <div class="form-actions"><button class="btn primary" type="submit">Отправить заявку</button></div>
+    </form></div></div></section>
 
-    <section class="section">
-      <div class="container teachers">
-        <div class="center">
-          <h2>Преподаватели</h2>
-          <p class="text">Практики, которые покажут процесс без лишней теории и помогут разобрать идеи участников.</p>
-        </div>
-        <div class="card speaker">
-          <div class="avatar"><img src="assets/VK.jpg" alt="Владимир Ганьшин"></div>
-          <div class="speaker-copy">
-            <h2>Владимир Ганьшин</h2>
-            <p>Расскажет, как появилась идея мастер-класса, почему ИИ стал удобной точкой входа в 3D и как превратить интерес участника в понятный план работы.</p>
-            <div class="tags">
-              <span class="tag">Идея и сценарий</span>
-              <span class="tag">AI workflow</span>
-              <span class="tag">Организация процесса</span>
-              <span class="tag">Практика</span>
-            </div>
-          </div>
-        </div>
-        <div class="card speaker">
-          <div class="avatar"><img src="assets/teacher-kristina.jpg" alt="Понкратова Христина"></div>
-          <div class="speaker-copy">
-            <h2>Понкратова Христина</h2>
-            <p>Поможет участникам сформулировать идею, собрать референсы, уточнить визуальный образ и подготовить задачу так, чтобы её можно было развить в 3D-форму.</p>
-            <div class="tags">
-              <span class="tag">Референсы</span>
-              <span class="tag">Визуальная идея</span>
-              <span class="tag">Подготовка ТЗ</span>
-              <span class="tag">Разбор проектов</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section class="section"><div class="container card faq-card"><h2>FAQ</h2><div class="faq-list">
+    <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>Можно ли без опыта?</span><span class="faq-icon">⌄</span></button><div class="faq-a">Да, программа рассчитана на участников с любым уровнем подготовки.</div></div>
+    <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>Нужно ли приносить ноутбук?</span><span class="faq-icon">⌄</span></button><div class="faq-a">Нет, всё необходимое оборудование предоставляется на площадке.</div></div>
+    <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false"><span>Когда оплачивается платный формат?</span><span class="faq-icon">⌄</span></button><div class="faq-a">После подтверждения места организатором.</div></div>
+  </div></div></section>
 
-    <section class="section center" id="why">
-      <div class="container">
-        <div class="essay-card">
-          <h2>ВК Ганьшин расскажет, как он решил организовать мастер-класс</h2>
-          <p class="essay-lead">
-            Эта история появилась не из желания сделать ещё одно мероприятие, а из наблюдения: у людей много сильных идей, но мало понятного пути от мысли к форме.
-            <button class="essay-more" id="essayMore" type="button" aria-expanded="false" aria-controls="essayFull">Подробнее...</button>
-          </p>
-          <div class="essay-full" id="essayFull">
-            <p>Я долго видел одну и ту же ситуацию: человек приходит с образом, подарком, персонажем, деталью или учебной задачей, но между идеей и 3D-объектом будто стоит стена. Кажется, что нужно сразу знать сложные программы, понимать печать, материалы, ограничения и ещё правильно объяснить всё мастеру.</p>
-            <p>ИИ изменил этот вход. Он не делает работу за человека, но помогает быстрее сформулировать мысль, собрать референсы, увидеть слабые места и превратить хаотичное желание в понятный план. В этот момент стало ясно: нужен мастер-класс, где покажут не магию, а нормальный рабочий маршрут.</p>
-            <p>Так появилась идея занятия: собрать людей в лаборатории, показать связку ИИ, VR-проверки и 3D-печати, разобрать реальные вопросы и дать участникам ощущение, что 3D — это не закрытая территория для специалистов, а инструмент, к которому можно подойти спокойно и по шагам.</p>
-            <p>Главная цель мастер-класса — чтобы после него человек мог сказать: “Я понимаю, с чего начать, какие вопросы задать и как довести идею до объекта”.</p>
-          </div>
-          <div class="essay-visual printer-scene" aria-hidden="true">
-            <svg viewBox="0 0 900 900" role="img">
-              <defs><linearGradient id="plasticGradient" x1="250" y1="0" x2="650" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#8d5bff"/><stop offset="0.5" stop-color="#ff4fd8"/><stop offset="1" stop-color="#ff8b6c"/></linearGradient><linearGradient id="bodyGradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3d4760"/><stop offset="1" stop-color="#172033"/></linearGradient><mask id="printMask" class="model-mask"><rect x="0" y="560" width="900" height="0" fill="white"/></mask><g id="invaderShape"><rect x="320" y="374" width="26" height="26" rx="4"/><rect x="346" y="374" width="26" height="26" rx="4"/><rect x="372" y="374" width="26" height="26" rx="4"/><rect x="502" y="374" width="26" height="26" rx="4"/><rect x="528" y="374" width="26" height="26" rx="4"/><rect x="554" y="374" width="26" height="26" rx="4"/><rect x="294" y="426" width="26" height="26" rx="4"/><rect x="320" y="426" width="26" height="26" rx="4"/><rect x="346" y="426" width="26" height="26" rx="4"/><rect x="372" y="426" width="26" height="26" rx="4"/><rect x="398" y="426" width="26" height="26" rx="4"/><rect x="424" y="426" width="26" height="26" rx="4"/><rect x="450" y="426" width="26" height="26" rx="4"/><rect x="476" y="426" width="26" height="26" rx="4"/><rect x="502" y="426" width="26" height="26" rx="4"/><rect x="528" y="426" width="26" height="26" rx="4"/><rect x="554" y="426" width="26" height="26" rx="4"/><rect x="580" y="426" width="26" height="26" rx="4"/><rect x="294" y="556" width="26" height="26" rx="4"/><rect x="320" y="556" width="26" height="26" rx="4"/><rect x="398" y="556" width="26" height="26" rx="4"/><rect x="424" y="556" width="26" height="26" rx="4"/><rect x="502" y="556" width="26" height="26" rx="4"/><rect x="528" y="556" width="26" height="26" rx="4"/></g></defs>
-              <rect width="900" height="900" fill="#fff"/><rect x="190" y="125" width="520" height="520" rx="42" fill="none" stroke="#3d4760" stroke-width="34"/><path d="M255 585 L645 585 L615 522 L285 522 Z" fill="#1b2233"/><use href="#invaderShape" fill="url(#plasticGradient)" opacity=".14"/><g mask="url(#printMask)"><use href="#invaderShape" fill="url(#plasticGradient)"/></g><g class="print-head"><rect x="420" y="276" width="126" height="116" rx="18" fill="url(#bodyGradient)"/><line x1="483" y1="420" x2="483" y2="560" stroke="url(#plasticGradient)" stroke-width="3" class="extrusion-line"/></g><rect id="progressBar" x="560" y="708" width="10" height="10" rx="5" fill="url(#plasticGradient)"/><text id="percentText" x="690" y="717" font-size="15" font-weight="700" fill="#fff">1%</text><text id="layerText" x="560" y="736" font-size="15" font-weight="600" fill="#fff">СЛОЙ 1 / 80</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container wide result">
-        <div class="result-photo">
-          <div class="model-topbar">
-            <div class="model-title">
-              <strong>3D-статуэтка</strong>
-              <span>Meshy AI FBX · текстурированная модель</span>
-            </div>
-            <span class="model-badge" id="modelStatus">Загрузка модели</span>
-          </div>
-          <div class="model-stage">
-            <canvas id="statueViewer" data-model="assets/Meshy_AI_11111_0501073610_texture_fbx/Meshy_AI_11111_0501073610_texture.fbx" data-texture="assets/Meshy_AI_11111_0501073610_texture_fbx/Meshy_AI_11111_0501073610_texture.png" aria-label="Просмотр 3D-модели мужчины"></canvas>
-            <div class="model-fallback" id="modelFallback" aria-hidden="true"><div class="fallback-figure"></div><div class="fallback-message" id="fallbackMessage">Запустите сайт через локальный сервер</div></div>
-            <div class="model-loading" id="modelLoading">Загружаю FBX-модель...</div>
-          </div>
-          <div class="viewer-controls">
-            <div class="view-buttons" aria-label="Ракурсы модели">
-              <button class="view-btn active" type="button" data-view="iso">Изометрия</button>
-              <button class="view-btn" type="button" data-view="front">Фронт</button>
-              <button class="view-btn" type="button" data-view="side">Профиль</button>
-              <button class="view-btn" type="button" data-view="top">Сверху</button>
-            </div>
-            <button class="model-toggle active" id="autoRotate" type="button">Автоповорот</button>
-          </div>
-        </div>
-        
-      </div>
-    </section>
-
-    <section class="section center project-gallery" id="projects">
-      <div class="container">
-        <h2>Галерея проектов</h2>
-        <p class="text">Примеры направлений, которые можно разобрать на мастер-классе: от персонажей и подарков до прототипов и VR-форм.</p>
-      </div>
-      <div class="projects-marquee" aria-label="Бесконечная галерея проектов">
-        <div class="projects-track">
-          <article class="project-card"><div class="project-shot"><img loading="eager" src="assets/gallery-scan.jpg" alt="Сканирование 3D-модели на экране"></div><div class="project-body"><strong>Скан и цифровая модель</strong><span>Как перенести реальный объект в 3D и подготовить его к доработке.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="eager" src="assets/gallery-statues.jpg" alt="Напечатанные белая и розовая статуэтки в лаборатории"></div><div class="project-body"><strong>Персонаж-статуэтка</strong><span>Силуэт, характер, поза и подготовка к печати.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="lazy" src="assets/gallery-chess.jpg" alt="Напечатанные шахматные фигуры на доске"></div><div class="project-body"><strong>Игровой набор</strong><span>Серия объектов, единый стиль и аккуратная подготовка партии.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="lazy" src="assets/gallery-workshop.jpg" alt="Участники работают над крупными объектами в мастерской"></div><div class="project-body"><strong>Работа в мастерской</strong><span>Разбор идей, референсов и формы вместе с преподавателями.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="lazy" src="assets/gallery-large-print.jpg" alt="Крупная статуя печатается в 3D-принтере"></div><div class="project-body"><strong>Большая печать</strong><span>Масштаб, поддержка, поверхность и ограничения крупного объекта.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="lazy" src="assets/gallery-model.jpg" alt="Архитектурный макет в мастерской"></div><div class="project-body"><strong>Архитектурный макет</strong><span>Детали, материалы, фактура и сборка презентационного объекта.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="lazy" src="assets/gallery-scan.jpg" alt="Сканирование 3D-модели на экране"></div><div class="project-body"><strong>Скан и цифровая модель</strong><span>Как перенести реальный объект в 3D и подготовить его к доработке.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="lazy" src="assets/gallery-statues.jpg" alt="Напечатанные белая и розовая статуэтки в лаборатории"></div><div class="project-body"><strong>Персонаж-статуэтка</strong><span>Силуэт, характер, поза и подготовка к печати.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="lazy" src="assets/gallery-chess.jpg" alt="Напечатанные шахматные фигуры на доске"></div><div class="project-body"><strong>Игровой набор</strong><span>Серия объектов, единый стиль и аккуратная подготовка партии.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="lazy" src="assets/gallery-workshop.jpg" alt="Участники работают над крупными объектами в мастерской"></div><div class="project-body"><strong>Работа в мастерской</strong><span>Разбор идей, референсов и формы вместе с преподавателями.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="lazy" src="assets/gallery-large-print.jpg" alt="Крупная статуя печатается в 3D-принтере"></div><div class="project-body"><strong>Большая печать</strong><span>Масштаб, поддержка, поверхность и ограничения крупного объекта.</span></div></article>
-          <article class="project-card"><div class="project-shot"><img loading="lazy" src="assets/gallery-model.jpg" alt="Архитектурный макет в мастерской"></div><div class="project-body"><strong>Архитектурный макет</strong><span>Детали, материалы, фактура и сборка презентационного объекта.</span></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container two">
-        <div class="card program">
-          <h2>Программа</h2>
-          <p class="text">Коротко, по делу, с практикой.</p>
-          <div class="agenda">
-            <div class="agenda-item"><div class="time" data-event="timeText"></div><div><h3>ИИ в 3D</h3><p>Где ИИ реально помогает и какие задачи лучше оставлять человеку.</p></div></div>
-            <div class="agenda-item"><div class="time">14:30</div><div><h3>Промпт и форма</h3><p>От текста и референсов к 3D-идее.</p></div></div>
-            <div class="agenda-item"><div class="time">15:10</div><div><h3>VR и печать</h3><p>Форма, объём, масштаб и подготовка модели.</p></div></div>
-            <div class="agenda-item"><div class="time">15:40</div><div><h3>Разбор</h3><p>Вопросы, практические кейсы и следующие шаги.</p></div></div>
-          </div>
-        </div>
-        <div class="card pricing" id="pricing">
-          <h2>Форматы</h2>
-          <p class="text">Выберите подходящий формат участия.</p>
-          <div class="price-grid">
-            <div class="price-card">
-              <small>Бесплатно</small>
-              <h3>Участие</h3>
-              <div class="price" data-price="free">0 ₽</div>
-              <p>Для знакомства с темой без изготовления статуэтки.</p>
-              <ul><li>мастер-класс</li><li>без статуэтки</li><li>короткая причина участия</li></ul>
-              <a class="mini" href="#form" data-format="free">Выбрать</a>
-            </div>
-            <div class="price-card featured">
-              <small>Лучший выбор</small>
-              <h3>Стандарт</h3>
-              <div class="price" data-price="standard">2500 ₽</div>
-              <p>VR-форма и изготовление статуэтки по проекту.</p>
-              <ul><li>мастер-класс</li><li>VR-форма</li><li>статуэтка</li></ul>
-              <a class="mini primary" href="#form" data-format="standard">Выбрать</a>
-            </div>
-            <div class="price-card">
-              <small>VIP</small>
-              <h3>VIP</h3>
-              <div class="price" data-price="vip">5000 ₽</div>
-              <p>Большая статуэтка с участием скульптора и подписью.</p>
-              <ul><li>большой размер</li><li>Фёдор Паршин</li><li>подпись</li></ul>
-              <a class="mini" href="#form" data-format="vip">Выбрать</a>
-            </div>
-          </div>
-          <p style="color:var(--muted);font-size:14px">Оплата стандарта и VIP — только после подтверждения места.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section center place" id="place">
-      <div class="container">
-        <h2>Где пройдёт</h2>
-        <p class="text">Москва, ул. Беговая, 12. Метро Беговая. Начало в <span data-event="timeText"></span>.</p>
-        <a class="btn" target="_blank" rel="noopener noreferrer" href="https://yandex.ru/maps/?rtext=~55.778282,37.565506&rtt=auto">Построить маршрут</a>
-      </div>
-    </section>
-
-    <section class="section" id="form">
-      <div class="container form-layout">
-        <div class="card form-card">
-          <h2>Запись</h2>
-          <p class="text">Заполните форму. После отправки заявка попадёт в pipeline, менеджер получит уведомление, а вы — автоответ.</p>
-          <div class="success" id="successBox" role="status" aria-live="polite">Заявка принята. Мы ответим в течение 2 часов в рабочее время.</div>
-          <form id="signupForm">
-            <input class="honeypot" type="text" id="company" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <input type="hidden" id="formStartedAt" name="formStartedAt" value="">
-            <label>Ваше имя<input id="name" required placeholder="Имя"></label>
-            <label>Telegram или e-mail<input id="contact" required placeholder="@username или почта"></label>
-            <label>Телефон, если удобнее звонком<input id="phone" inputmode="tel" placeholder="+7 ..."></label>
-            <div class="choices">
-              <label class="choice"><input type="radio" name="format" value="standard" checked><span><strong>Стандарт — 2500 ₽</strong><span>VR-форма и статуэтка.</span></span></label>
-              <label class="choice"><input type="radio" name="format" value="vip"><span><strong>VIP — 5000 ₽</strong><span>Большая статуэтка, Фёдор Паршин, подпись.</span></span></label>
-              <label class="choice"><input type="radio" name="format" value="free" id="freeRadio"><span><strong>Бесплатно</strong><span>Без статуэтки. Укажите, зачем вам участие.</span></span></label>
-            </div>
-            <label>Ваш опыт в 3D или ИИ</label>
-            <div class="choice-grid">
-              <label class="choice"><input type="radio" name="experience" value="Без опыта" checked><span><strong>Без опыта</strong><span>Нужен понятный старт.</span></span></label>
-              <label class="choice"><input type="radio" name="experience" value="Базовый"><span><strong>Базовый</strong><span>Пробовал(а) инструменты.</span></span></label>
-              <label class="choice"><input type="radio" name="experience" value="Есть проект"><span><strong>Есть проект</strong><span>Нужно разобрать задачу.</span></span></label>
-            </div>
-            <div class="free" id="freeBlock">
-              <label>Почему вам важно участие<textarea id="reason" placeholder="Кратко укажите причину"></textarea></label>
-            </div>
-            <label>Что хотите сделать или разобрать<textarea id="projectIdea" required placeholder="Идея для статуэтки, проекта, подарка или вопрос"></textarea></label>
-            <label>Комментарий к участию<textarea id="comment" placeholder="Например: удобный способ связи, пожелания по формату, вопросы по оплате"></textarea></label>
-            <label class="consent">
-              <input id="consent" type="checkbox" required>
-              <span class="consent-text">Я даю согласие на обработку персональных данных и подтверждаю, что ознакомлен(а) с <a href="consent.html" target="_blank" rel="noopener noreferrer">согласием</a>, <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">политикой обработки ПДн</a> и <a href="terms.html" target="_blank" rel="noopener noreferrer">условиями участия</a>.</span>
-            </label>
-            <div class="form-actions">
-              <button class="btn primary" type="submit">Отправить заявку</button>
-              <a class="btn" href="https://t.me/step_3d_mngr" target="_blank" rel="noopener noreferrer">Написать в Telegram</a>
-            </div>
-            <p class="form-note">Оплата стандарта и VIP — после подтверждения места. Бесплатный формат не требует оплаты.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-
-
-
-    <section class="section">
-      <div class="container card faq-card">
-        <h2>Хотите узнать больше?</h2>
-        <p class="faq-sub">Ответы на частые вопросы.</p>
-        <div class="faq-list">
-          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-1"><span>Чем мастер-класс отличается от других воркшопов по 3D?</span><span class="faq-icon" aria-hidden="true">⌄</span></button><div class="faq-a" id="faq-a-1">Мы показываем связку ИИ, VR и печати в едином процессе с практикой и разбором вашего кейса.</div></div>
-          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-2"><span>Как ИИ помогает в создании 3D-формы?</span><span class="faq-icon" aria-hidden="true">⌄</span></button><div class="faq-a" id="faq-a-2">ИИ ускоряет поиск идей, формирует структуру работы и помогает быстрее перейти к рабочему прототипу.</div></div>
-          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-3"><span>Нужен ли опыт в 3D-моделировании?</span><span class="faq-icon" aria-hidden="true">⌄</span></button><div class="faq-a" id="faq-a-3">Нет, можно прийти без подготовки: мы даём пошаговый сценарий и помогаем на каждом этапе.</div></div>
-          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-4"><span>Можно ли использовать результат в портфолио?</span><span class="faq-icon" aria-hidden="true">⌄</span></button><div class="faq-a" id="faq-a-4">Да, вы сможете показать итоговую работу и описать процесс как учебный или портфолио-кейс.</div></div>
-          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-5"><span>Какие материалы подготовить заранее?</span><span class="faq-icon" aria-hidden="true">⌄</span></button><div class="faq-a" id="faq-a-5">Достаточно идеи проекта и удобного контакта в Telegram или e-mail.</div></div>
-          <div class="faq-item"><button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a-6"><span>Как подтвердить место?</span><span class="faq-icon" aria-hidden="true">⌄</span></button><div class="faq-a" id="faq-a-6">Заполните форму или напишите в Telegram — после этого мы подтвердим место и детали участия.</div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contacts">
-      <div class="container card contacts-card">
-        <h2>Контакты</h2>
-        <p class="text">Пишите, если нужно уточнить детали.</p>
-        <div class="contacts">
-          <div class="contact"><strong>Telegram</strong><a href="https://t.me/step_3d_mngr" target="_blank" rel="noopener noreferrer">@step_3d_mngr</a><span>Быстрая запись и вопросы.</span><button class="copy" type="button" data-copy="@step_3d_mngr">Скопировать ник</button></div>
-          <div class="contact"><strong>E-mail</strong><a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a><span>Для подробных запросов.</span><button class="copy" type="button" data-copy="projects.step3d@gmail.com">Скопировать почту</button></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-box">
-      <div class="footer-event" data-text="footer_event"></div>
-        <a class="footer-link" href="terms.html" target="_blank" rel="noopener noreferrer">Оферта / Условия участия</a>
-        <a class="footer-link" href="consent.html" target="_blank" rel="noopener noreferrer">Согласие на обработку</a>
-      </div>
-    </div>
-  </footer>
-
-  <a class="floating" href="#form" aria-label="Перейти к форме записи">Записаться</a>
-
-  <script type="importmap">
-    {"imports":{"three":"./assets/vendor/three/three.module.min.js"}}
-  </script>
-  <script type="module" src="assets/scripts/main.js"></script>
-</body>
-</html>
+  <section class="section" id="contacts"><div class="container card contacts-card"><h2>Контакты</h2><div class="contacts"><div class="contact"><strong>Telegram</strong><a href="https://t.me/step_3d_mngr">@step_3d_mngr</a></div><div class="contact"><strong>E-mail</strong><a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a></div></div></div></section>
+</main>
+<footer class="footer"><div class="container footer-box"><a class="footer-link" href="terms.html" target="_blank" rel="noopener noreferrer">Условия участия</a><a class="footer-link" href="consent.html" target="_blank" rel="noopener noreferrer">Согласие</a><a class="footer-link" href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Политика обработки ПДн</a></div></footer>
+<script type="module" src="assets/scripts/main.js"></script>
+</body></html>
