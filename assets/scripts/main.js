@@ -1,7 +1,43 @@
 const topbar = document.querySelector('.topbar');
 
+const navToggle = document.querySelector('.nav-toggle');
+const nav = document.getElementById('mainNav');
+const backToTopButton = document.querySelector('.back-to-top');
+
+function closeNav() {
+  nav?.classList.remove('open');
+  navToggle?.setAttribute('aria-expanded', 'false');
+  if (navToggle) navToggle.textContent = '☰';
+}
+
+navToggle?.addEventListener('click', () => {
+  const isOpen = nav?.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
+  navToggle.textContent = isOpen ? '✕' : '☰';
+});
+
+document.addEventListener('click', (event) => {
+  if (!nav?.classList.contains('open')) return;
+  if (event.target instanceof Element && (event.target.closest('.nav') || event.target.closest('.nav-toggle'))) return;
+  closeNav();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeNav();
+});
+
+document.querySelectorAll('.nav a').forEach((link) => {
+  link.addEventListener('click', () => closeNav());
+});
+
+backToTopButton?.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+
 function updateTopbarState() {
   topbar?.classList.toggle('scrolled', window.scrollY > 6);
+  backToTopButton?.classList.toggle('visible', window.scrollY > 420);
 }
 
 updateTopbarState();
