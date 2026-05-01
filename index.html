@@ -31,13 +31,14 @@
   </div>
 </header>
 <main id="mainContent">
+  <div class="reading-progress" aria-hidden="true"><div class="reading-progress-bar" id="readingProgressBar"></div></div>
   <section class="hero" id="about">
     <div class="container hero-inner">
       <div class="kicker">Очный мастер-класс в Москве</div>
       <h1>ИИ в 3D: от идеи до объекта</h1>
       <p class="subtitle">За одно занятие вы поймёте рабочий путь: идея → ИИ-эскиз → 3D-модель → подготовка к печати. Можно участвовать бесплатно или выбрать платный формат с фигуркой.</p>
-      <div class="actions"><a href="#form" class="btn primary">Оставить заявку</a></div>
-      <div class="facts"><div class="fact"><span>Дата</span><strong>23 мая 2026</strong></div><div class="fact"><span>Начало</span><strong>14:00</strong></div><div class="fact"><span>Формат</span><strong>Очно</strong></div><div class="fact"><span>Город</span><strong>Москва</strong></div></div>
+      <div class="actions"><a href="#form" class="btn primary">Оставить заявку</a><a href="#program" class="btn ghost">Смотреть программу</a></div><div class="hero-trust" aria-label="Преимущества"><span>Для новичков</span><span>2.5 часа практики</span><span>Живые кейсы</span></div>
+      <div class="facts"><div class="fact"><span>Дата</span><strong>23 мая 2026</strong></div><div class="fact"><span>Начало</span><strong>14:00</strong></div><div class="fact"><span>Формат</span><strong>Очно</strong></div><div class="fact"><span>Город</span><strong>Москва</strong></div></div><p class="countdown" id="countdown" aria-live="polite"></p>
     </div>
   </section>
 
@@ -72,8 +73,8 @@
   <section class="section" id="form"><div class="container form-layout"><div class="card form-card"><h2>Запись на мастер-класс</h2>
     <form id="signupForm" novalidate>
       <label for="name">Имя<input id="name" required placeholder="Как к вам обращаться"></label>
-      <label for="contact">Telegram или e-mail<input id="contact" required placeholder="@username или name@example.com"></label>
-      <label for="phone">Телефон<input id="phone" inputmode="tel" placeholder="+7 999 123-45-67"></label>
+      <label for="contact">Telegram или e-mail<input id="contact" required placeholder="@username или name@example.com" autocomplete="email" aria-describedby="contactHint"></label><small id="contactHint" class="field-hint">Можно указать Telegram в формате @username.</small>
+      <label for="phone">Телефон<input id="phone" inputmode="tel" placeholder="+7 999 123-45-67" autocomplete="tel"></label>
       <label for="experience">Ваш опыт<input id="experience" placeholder="Например: с нуля / базовый / уже печатаю"></label>
       <label for="projectIdea">Что хотите сделать или разобрать<textarea id="projectIdea" required placeholder="Коротко опишите идею"></textarea></label>
       <label for="comment">Комментарий<textarea id="comment" placeholder="Удобное время связи, вопросы и т.д."></textarea></label>
@@ -95,6 +96,7 @@
 
   <section class="section" id="contacts"><div class="container card contacts-card"><h2>Контакты</h2><div class="contacts"><div class="contact"><strong>Telegram</strong><a href="https://t.me/step_3d_mngr">@step_3d_mngr</a><button class="mini copy-btn" data-copy="@step_3d_mngr">Скопировать</button></div><div class="contact"><strong>E-mail</strong><a href="mailto:projects.step3d@gmail.com">projects.step3d@gmail.com</a><button class="mini copy-btn" data-copy="projects.step3d@gmail.com">Скопировать</button></div></div></div></section>
 </main>
+<div class="mobile-sticky-cta"><a href="#form" class="btn primary">Записаться на 23 мая</a></div>
 <button class="back-to-top" type="button" aria-label="Наверх">↑</button>
 <footer class="footer"><div class="container footer-box"><a class="footer-link" href="terms.html" target="_blank" rel="noopener noreferrer">Оферта / Условия участия</a><a class="footer-link" href="consent.html" target="_blank" rel="noopener noreferrer">Согласие на обработку персональных данных</a><a class="footer-link" href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Политика обработки персональных данных</a></div></footer>
 <script type="module" src="assets/scripts/main.js"></script>

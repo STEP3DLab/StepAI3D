@@ -3,6 +3,8 @@ const topbar = document.querySelector('.topbar');
 const navToggle = document.querySelector('.nav-toggle');
 const nav = document.getElementById('mainNav');
 const backToTopButton = document.querySelector('.back-to-top');
+const progressBar = document.getElementById('readingProgressBar');
+const countdown = document.getElementById('countdown');
 
 function closeNav() {
   nav?.classList.remove('open');
@@ -38,6 +40,9 @@ backToTopButton?.addEventListener('click', () => {
 function updateTopbarState() {
   topbar?.classList.toggle('scrolled', window.scrollY > 6);
   backToTopButton?.classList.toggle('visible', window.scrollY > 420);
+  const h = document.documentElement;
+  const progress = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  if (progressBar) progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
 }
 
 updateTopbarState();
@@ -197,3 +202,48 @@ document.querySelectorAll('.copy-btn').forEach((button) => {
     }
   });
 });
+
+
+function updateCountdown() {
+  if (!countdown) return;
+  const eventDate = new Date('2026-05-23T14:00:00+03:00');
+  const diff = eventDate - new Date();
+  if (diff <= 0) {
+    countdown.textContent = 'Мастер-класс уже сегодня. Оставьте заявку для подтверждения участия.';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  countdown.textContent = `До старта осталось ${d} дн. ${h} ч.`;
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+const requiredFields = ['name','contact','projectIdea'];
+requiredFields.forEach((id) => {
+  const el = document.getElementById(id);
+  el?.addEventListener('blur', () => el.classList.toggle('error', !el.value.trim()));
+  el?.addEventListener('input', () => el.classList.remove('error'));
+});
+
+const STORAGE_KEY = 'stepai3d_form_draft_v2';
+const draftFields = ['name','contact','phone','experience','projectIdea','comment'];
+function saveDraft() {
+  if (!signupForm || isSubmitted) return;
+  const data = Object.fromEntries(draftFields.map((id)=>[id, document.getElementById(id)?.value || '']));
+  data.format = document.querySelector('input[name="format"]:checked')?.value || 'free';
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+function loadDraft() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    draftFields.forEach((id)=>{ const el=document.getElementById(id); if (el && data[id]) el.value = data[id]; });
+    const radio = document.querySelector(`input[name=format][value="${data.format}"]`);
+    if (radio) radio.checked = true;
+    updateChoices();
+  } catch {}
+}
+loadDraft();
+signupForm?.addEventListener('input', saveDraft);
