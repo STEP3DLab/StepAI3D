@@ -112,25 +112,11 @@
             <p>Так появилась идея занятия: собрать людей в лаборатории, показать связку ИИ, VR-проверки и 3D-печати, разобрать реальные вопросы и дать участникам ощущение, что 3D — это не закрытая территория для специалистов, а инструмент, к которому можно подойти спокойно и по шагам.</p>
             <p>Главная цель мастер-класса — чтобы после него человек мог сказать: “Я понимаю, с чего начать, какие вопросы задать и как довести идею до объекта”.</p>
           </div>
-          <div class="essay-visual" aria-hidden="true">
-            <div class="orbit">
-              <div class="lock-core">
-                <svg viewBox="0 0 48 48" fill="none">
-                  <rect x="9" y="19" width="30" height="24" rx="3" stroke="currentColor" stroke-width="3"/>
-                  <path d="M16 19v-6a8 8 0 0 1 16 0v6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <circle cx="24" cy="31" r="3" fill="currentColor"/>
-                </svg>
-              </div>
-              <div class="essay-icon wave">
-                <svg viewBox="0 0 48 48" fill="none"><path d="M8 22v8M15 14v24M22 20v12M29 10v28M36 18v16M43 23v7" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-              </div>
-              <div class="essay-icon users">
-                <svg viewBox="0 0 48 48" fill="none"><circle cx="21" cy="18" r="6" stroke="currentColor" stroke-width="3"/><path d="M9 38c2-7 21-7 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M31 14c5 1 7 8 2 12M36 32c4 1 7 3 8 6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-              </div>
-              <div class="essay-icon doc">
-                <svg viewBox="0 0 48 48" fill="none"><rect x="11" y="8" width="26" height="32" rx="2" stroke="currentColor" stroke-width="3"/><path d="M18 18h12M18 25h12M18 32h8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
-              </div>
-            </div>
+          <div class="essay-visual printer-scene" aria-hidden="true">
+            <svg viewBox="0 0 900 900" role="img">
+              <defs><linearGradient id="plasticGradient" x1="250" y1="0" x2="650" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#8d5bff"/><stop offset="0.5" stop-color="#ff4fd8"/><stop offset="1" stop-color="#ff8b6c"/></linearGradient><linearGradient id="bodyGradient" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3d4760"/><stop offset="1" stop-color="#172033"/></linearGradient><mask id="printMask" class="model-mask"><rect x="0" y="560" width="900" height="0" fill="white"/></mask><g id="invaderShape"><rect x="320" y="374" width="26" height="26" rx="4"/><rect x="346" y="374" width="26" height="26" rx="4"/><rect x="372" y="374" width="26" height="26" rx="4"/><rect x="502" y="374" width="26" height="26" rx="4"/><rect x="528" y="374" width="26" height="26" rx="4"/><rect x="554" y="374" width="26" height="26" rx="4"/><rect x="294" y="426" width="26" height="26" rx="4"/><rect x="320" y="426" width="26" height="26" rx="4"/><rect x="346" y="426" width="26" height="26" rx="4"/><rect x="372" y="426" width="26" height="26" rx="4"/><rect x="398" y="426" width="26" height="26" rx="4"/><rect x="424" y="426" width="26" height="26" rx="4"/><rect x="450" y="426" width="26" height="26" rx="4"/><rect x="476" y="426" width="26" height="26" rx="4"/><rect x="502" y="426" width="26" height="26" rx="4"/><rect x="528" y="426" width="26" height="26" rx="4"/><rect x="554" y="426" width="26" height="26" rx="4"/><rect x="580" y="426" width="26" height="26" rx="4"/><rect x="294" y="556" width="26" height="26" rx="4"/><rect x="320" y="556" width="26" height="26" rx="4"/><rect x="398" y="556" width="26" height="26" rx="4"/><rect x="424" y="556" width="26" height="26" rx="4"/><rect x="502" y="556" width="26" height="26" rx="4"/><rect x="528" y="556" width="26" height="26" rx="4"/></g></defs>
+              <rect width="900" height="900" fill="#fff"/><rect x="190" y="125" width="520" height="520" rx="42" fill="none" stroke="#3d4760" stroke-width="34"/><path d="M255 585 L645 585 L615 522 L285 522 Z" fill="#1b2233"/><use href="#invaderShape" fill="url(#plasticGradient)" opacity=".14"/><g mask="url(#printMask)"><use href="#invaderShape" fill="url(#plasticGradient)"/></g><g class="print-head"><rect x="420" y="276" width="126" height="116" rx="18" fill="url(#bodyGradient)"/><line x1="483" y1="420" x2="483" y2="560" stroke="url(#plasticGradient)" stroke-width="3" class="extrusion-line"/></g><rect id="progressBar" x="560" y="708" width="10" height="10" rx="5" fill="url(#plasticGradient)"/><text id="percentText" x="690" y="717" font-size="15" font-weight="700" fill="#fff">1%</text><text id="layerText" x="560" y="736" font-size="15" font-weight="600" fill="#fff">СЛОЙ 1 / 80</text>
+            </svg>
           </div>
         </div>
       </div>
@@ -161,35 +147,7 @@
             <button class="model-toggle active" id="autoRotate" type="button">Автоповорот</button>
           </div>
         </div>
-        <div class="result-copy">
-          <div class="model-panel-head">
-            <h2>Панель модели</h2>
-            <p>Проверьте форму, масштаб и готовность статуэтки к печати прямо в блоке результата.</p>
-          </div>
-          <div class="model-stats">
-            <div class="model-stat"><span>Формат</span><strong>FBX</strong></div>
-            <div class="model-stat"><span>Объект</span><strong id="triCount">мужчина</strong></div>
-            <div class="model-stat"><span>Размер файла</span><strong id="modelSize">14.3 MB</strong></div>
-            <div class="model-stat"><span>Статус</span><strong id="readyState">Чтение</strong></div>
-          </div>
-          <div class="model-tools">
-            <div class="tool-row">
-              <label for="modelScale">Масштаб модели <span id="scaleValue">100%</span></label>
-              <input id="modelScale" type="range" min="78" max="122" value="100">
-            </div>
-            <div class="texture-list" aria-label="Карты материала модели">
-              <div class="texture-pill"><b>Albedo</b><span>подключено</span></div>
-              <div class="texture-pill"><b>Normal</b><span>детали формы</span></div>
-              <div class="texture-pill"><b>Roughness</b><span>матовость</span></div>
-              <div class="texture-pill"><b>Metallic</b><span>PBR</span></div>
-            </div>
-            <div class="tool-row">
-              <label>Готовность к печати <span>проверено</span></label>
-              <div class="status-line"><span></span></div>
-            </div>
-          </div>
-          <div class="model-note">Совет: вращайте модель мышью или включите автоповорот, чтобы оценить силуэт перед печатью.</div>
-        </div>
+        
       </div>
     </section>
 
