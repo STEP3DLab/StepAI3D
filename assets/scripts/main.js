@@ -16,17 +16,10 @@ document.querySelectorAll('.faq-q').forEach((button) => {
 });
 
 const choices = [...document.querySelectorAll('.choice')];
-
 function updateChoices() {
-  choices.forEach((choice) => {
-    choice.classList.toggle('selected', choice.querySelector('input')?.checked);
-  });
+  choices.forEach((choice) => choice.classList.toggle('selected', choice.querySelector('input')?.checked));
 }
-
-document.querySelectorAll('input[type="radio"]').forEach((radio) => {
-  radio.addEventListener('change', updateChoices);
-});
-
+document.querySelectorAll('input[type="radio"]').forEach((radio) => radio.addEventListener('change', updateChoices));
 updateChoices();
 
 document.querySelectorAll('[data-format]').forEach((link) => {
@@ -39,9 +32,7 @@ document.querySelectorAll('[data-format]').forEach((link) => {
   });
 });
 
-// Endpoint Google Apps Script для отправки заявок в таблицу.
 const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz6yb9pHwKY9-6zhvkmKMTD1BBo66ehL5FKEJ-FZAMUYiW6NWpqjcMue3K6gagh_bfn/exec';
-
 const signupForm = document.getElementById('signupForm');
 const formMessage = document.getElementById('formMessage');
 const submitButton = signupForm?.querySelector('button[type="submit"]');
@@ -54,164 +45,119 @@ function setFormMessage(text, status = 'error') {
   formMessage.className = `form-message ${status}`;
 }
 
-function getUtmParams() {
-  const params = new URLSearchParams(window.location.search);
-  return {
-    utmSource: params.get('utm_source') || '',
-    utmMedium: params.get('utm_medium') || '',
-    utmCampaign: params.get('utm_campaign') || '',
-    utmContent: params.get('utm_content') || '',
-    utmTerm: params.get('utm_term') || ''
-  };
-}
-
 function normalizePhone(rawPhone) {
   const digits = rawPhone.replace(/[\s()\-]/g, '').replace(/[^\d+]/g, '');
-
-  if (!digits) {
-    return '';
-  }
-
-  if (digits.startsWith('+7')) {
-    return `+7${digits.slice(2).replace(/\D/g, '')}`;
-  }
-
-  if (digits.startsWith('8')) {
-    return `+7${digits.slice(1).replace(/\D/g, '')}`;
-  }
-
+  if (!digits) return '';
+  if (digits.startsWith('+7')) return `+7${digits.slice(2).replace(/\D/g, '')}`;
+  if (digits.startsWith('8')) return `+7${digits.slice(1).replace(/\D/g, '')}`;
   return digits;
 }
 
 function parseAndValidateContacts({ phone, contact }) {
   const normalizedPhone = normalizePhone(phone);
-  const expectedPhoneLength = 12; // +7 и 10 цифр номера.
-  const minPhoneLength = 11;
   const telegramPattern = /^@[a-zA-Z0-9_]{5,32}$/;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
   let telegram = '';
   let email = '';
 
   if (contact) {
     if (contact.startsWith('@')) {
-      if (!telegramPattern.test(contact)) {
-        return {
-          isValid: false,
-          error: 'Telegram укажите в формате @username (латиница, цифры, _, 5–32 символа).'
-        };
-      }
+      if (!telegramPattern.test(contact)) return { isValid: false, error: 'Telegram укажите в формате @username.' };
       telegram = contact;
     } else {
-      if (!emailPattern.test(contact)) {
-        return {
-          isValid: false,
-          error: 'Email укажите в формате name@example.com или используйте Telegram в формате @username.'
-        };
-      }
+      if (!emailPattern.test(contact)) return { isValid: false, error: 'Укажите корректный e-mail или Telegram.' };
       email = contact;
     }
   }
 
-  if (normalizedPhone && normalizedPhone.length < minPhoneLength) {
-    return {
-      isValid: false,
-      error: 'Телефон слишком короткий. Укажите номер в формате +79991234567 или 89991234567.'
-    };
+  if (normalizedPhone && normalizedPhone.length !== 12) {
+    return { isValid: false, error: 'Телефон укажите в формате +79991234567 или 89991234567.' };
   }
 
-  if (normalizedPhone && normalizedPhone.length !== expectedPhoneLength) {
-    return {
-      isValid: false,
-      error: 'Телефон укажите в формате +79991234567 или 89991234567.'
-    };
-  }
-
-  return {
-    isValid: true,
-    phone: normalizedPhone,
-    telegram,
-    email
-  };
+  return { isValid: true, phone: normalizedPhone, telegram, email };
 }
 
 signupForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
-
-  if (isSubmitted) {
-    return;
-  }
+  if (isSubmitted) return;
 
   const name = document.getElementById('name')?.value.trim() || '';
   const contact = document.getElementById('contact')?.value.trim() || '';
   const phone = document.getElementById('phone')?.value.trim() || '';
-  const comment = document.getElementById('projectIdea')?.value.trim() || '';
+  const experience = document.getElementById('experience')?.value.trim() || '';
+  const projectIdea = document.getElementById('projectIdea')?.value.trim() || '';
+  const comment = document.getElementById('comment')?.value.trim() || '';
   const consent = Boolean(document.getElementById('consent')?.checked);
-  const formatNode = document.querySelector('input[name="format"]:checked');
-  const participationFormat = formatNode?.value || 'standard';
+  const participationFormat = document.querySelector('input[name="format"]:checked')?.value || 'free';
   const contacts = parseAndValidateContacts({ phone, contact });
 
-  // Валидация MVP: обязательно имя, контакт (телефон, Telegram или email) и согласие.
-  if (!name) {
-    setFormMessage('Укажите, пожалуйста, ваше имя.');
+  if (!name || !contact || !projectIdea) {
+    setFormMessage('Заполните обязательные поля: имя, контакт и идея проекта.');
     return;
   }
-  if (!contacts.isValid) {
-    setFormMessage(contacts.error);
-    return;
-  }
-  if (!contacts.phone && !contacts.telegram && !contacts.email) {
-    setFormMessage('Укажите телефон в формате +79991234567 (или 89991234567), Telegram @username или email name@example.com.');
-    return;
-  }
-  if (!consent) {
-    setFormMessage('Нужно согласие на обработку персональных данных.');
-    return;
-  }
+  if (!contacts.isValid) return setFormMessage(contacts.error);
+  if (!consent) return setFormMessage('Подтвердите согласие на обработку персональных данных.');
 
   const payload = {
     name,
     phone: contacts.phone,
     telegram: contacts.telegram,
     email: contacts.email,
-    participationFormat,
-    needFigure: participationFormat !== 'free',
-    tariff: participationFormat,
-    seats: 1,
+    experience,
+    projectIdea,
     comment,
-    consent,
+    participationFormat,
     page: window.location.href,
-    ...getUtmParams(),
     userAgent: navigator.userAgent
   };
 
-  setFormMessage('');
-  if (submitButton) {
-    submitButton.textContent = 'Отправляем...';
-    submitButton.disabled = true;
-  }
+  setFormMessage('Отправляем заявку…', 'success');
+  submitButton.textContent = 'Отправка...';
+  submitButton.disabled = true;
 
   try {
-    // Для no-cors нельзя прочитать ответ, успехом считаем отсутствие исключения fetch.
     await fetch(FORM_ENDPOINT, {
       method: 'POST',
       mode: 'no-cors',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8'
-      },
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     });
 
     isSubmitted = true;
     signupForm.reset();
     updateChoices();
-    setFormMessage('Заявка отправлена. Мы свяжемся с вами.', 'success');
+    setFormMessage('Заявка принята. Мы свяжемся с вами для подтверждения места.', 'success');
   } catch {
-    setFormMessage('Не удалось отправить заявку. Напишите нам в Telegram.');
+    setFormMessage('Ошибка отправки. Пожалуйста, напишите нам в Telegram.', 'error');
   } finally {
-    if (submitButton) {
-      submitButton.textContent = defaultButtonText;
-      submitButton.disabled = isSubmitted;
-    }
+    submitButton.textContent = defaultButtonText;
+    submitButton.disabled = isSubmitted;
   }
+});
+
+async function copyText(value) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return true;
+  }
+  const temp = document.createElement('input');
+  temp.value = value;
+  document.body.append(temp);
+  temp.select();
+  const ok = document.execCommand('copy');
+  temp.remove();
+  return ok;
+}
+
+document.querySelectorAll('.copy-btn').forEach((button) => {
+  button.addEventListener('click', async () => {
+    try {
+      await copyText(button.dataset.copy || '');
+      const original = button.textContent;
+      button.textContent = 'Скопировано';
+      setTimeout(() => { button.textContent = original; }, 1500);
+    } catch {
+      button.textContent = 'Скопируйте вручную';
+    }
+  });
 });
