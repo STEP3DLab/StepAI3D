@@ -18,7 +18,6 @@
   <meta name="twitter:title" content="Мастер-класс — ИИ в 3D">
   <meta name="twitter:description" content="Мастер-класс 23 мая в 14:00. ИИ в 3D-моделировании: от идеи до статуэтки.">
   <meta name="twitter:image" content="https://step3dlab.github.io/StepAI/media-contact-sheet.jpg">
-
 </head>
 <body>
   <header class="topbar">
@@ -410,6 +409,8 @@
           <p class="text">Заполните форму. После отправки заявка попадёт в pipeline, менеджер получит уведомление, а вы — автоответ.</p>
           <div class="success" id="successBox" role="status">Заявка принята. Мы ответим в течение 2 часов в рабочее время.</div>
           <form id="signupForm">
+            <input class="honeypot" type="text" id="company" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="hidden" id="formStartedAt" name="formStartedAt" value="">
             <label>Ваше имя<input id="name" required placeholder="Имя"></label>
             <label>Telegram или e-mail<input id="contact" required placeholder="@username или почта"></label>
             <label>Телефон, если удобнее звонком<input id="phone" inputmode="tel" placeholder="+7 ..."></label>
