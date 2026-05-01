@@ -71,8 +71,8 @@
     <article class="project-card"><div class="project-shot"><img src="assets/gallery-workshop.jpg" alt="Работа участников в мастерской"></div><div class="project-body"><strong>Работа в лаборатории</strong></div></article>
   </div></div></section>
 
-  <section class="section" id="form"><div class="container form-layout"><div class="card form-card"><h2>Форма заявки</h2><p class="text">Оставьте контакты, и мы свяжемся с вами для подтверждения участия.</p><div class="success show" id="successBox" role="status">Отправка формы будет подключена отдельным этапом. Сейчас форма доступна для заполнения и проверки структуры.</div>
-    <form id="signupForm">
+  <section class="section" id="form"><div class="container form-layout"><div class="card form-card"><h2>Форма заявки</h2><p class="text">Оставьте контакты, и мы свяжемся с вами для подтверждения участия.</p>
+    <form id="signupForm" novalidate>
       <label>Ваше имя<input id="name" required placeholder="Имя"></label>
       <label>Telegram или e-mail<input id="contact" required placeholder="@username или почта"></label>
       <label>Телефон (по желанию)<input id="phone" inputmode="tel" placeholder="+7 ..."></label>
@@ -83,7 +83,7 @@
       </div>
       <label>Что хотите сделать или разобрать<textarea id="projectIdea" required placeholder="Коротко опишите идею"></textarea></label>
       <label class="consent"><input id="consent" type="checkbox" required><span class="consent-text">Я даю согласие на обработку персональных данных и подтверждаю, что ознакомлен(а) с <a href="consent.html" target="_blank" rel="noopener noreferrer">Согласием</a>, <a href="privacy-policy.html" target="_blank" rel="noopener noreferrer">Политикой обработки персональных данных</a> и <a href="terms.html" target="_blank" rel="noopener noreferrer">Условиями участия</a>.</span></label>
-      <div class="form-actions"><button class="btn primary" type="submit">Отправить заявку</button></div>
+      <div class="form-actions"><button class="btn primary" type="submit">Отправить заявку</button></div><div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
     </form></div></div></section>
 
   <section class="section"><div class="container card faq-card"><h2>FAQ</h2><div class="faq-list">
